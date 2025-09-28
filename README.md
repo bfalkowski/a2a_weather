@@ -82,7 +82,7 @@ The application automatically:
 - Uses Java 17 runtime
 
 ### Optional: OpenWeatherMap API Key
-To use real weather data instead of mock data:
+The agent works perfectly without an API key using mock data. To use real weather data instead:
 
 ```bash
 # Set your OpenWeatherMap API key
@@ -93,6 +93,8 @@ heroku config:set OPENWEATHER_API_KEY=your_api_key_here
 1. Sign up at https://openweathermap.org/api (free, no credit card required)
 2. Get your API key from the dashboard
 3. Free tier: 1,000 calls/day, 1 call/minute
+
+**Note:** The agent will automatically start with mock data if no API key is provided - no configuration required!
 
 ## Testing
 

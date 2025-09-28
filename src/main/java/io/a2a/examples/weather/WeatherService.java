@@ -16,13 +16,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Optional;
 
 @ApplicationScoped
 public class WeatherService {
 
     @Inject
-    @ConfigProperty(name = "openweather.api.key", defaultValue = "")
-    String apiKey;
+    @ConfigProperty(name = "openweather.api.key")
+    Optional<String> apiKey;
 
     @Inject
     @ConfigProperty(name = "openweather.api.base.url", defaultValue = "https://api.openweathermap.org/data/2.5")
@@ -36,7 +37,7 @@ public class WeatherService {
     private final Random random = new Random();
 
     public boolean isConfigured() {
-        return apiKey != null && !apiKey.trim().isEmpty();
+        return apiKey.isPresent() && !apiKey.get().trim().isEmpty();
     }
 
     public Map<String, Object> getCurrentWeather(String zipCode, String countryCode) {
@@ -46,7 +47,7 @@ public class WeatherService {
 
         try {
             String url = String.format("%s/weather?zip=%s,%s&appid=%s&units=imperial", 
-                                    baseUrl, zipCode, countryCode, apiKey);
+                                    baseUrl, zipCode, countryCode, apiKey.get());
             
             try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
                 HttpGet request = new HttpGet(url);
@@ -79,7 +80,7 @@ public class WeatherService {
 
         try {
             String url = String.format("%s/forecast?zip=%s,%s&appid=%s&units=imperial", 
-                                    baseUrl, zipCode, countryCode, apiKey);
+                                    baseUrl, zipCode, countryCode, apiKey.get());
             
             try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
                 HttpGet request = new HttpGet(url);
