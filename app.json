@@ -1,0 +1,14 @@
+{
+    "name": "A2A Weather Agent",
+    "description": "Self-contained A2A Weather agent (JSON-RPC) for weather information by ZIP code with OpenWeatherMap integration.",
+    "keywords": ["a2a", "json-rpc", "java", "weather", "openweathermap", "zipcode"],
+    "formation": { "web": { "quantity": 1, "size": "eco" } },
+    "buildpacks": [{ "url": "heroku/java" }],
+    "success_url": "/agent/health",
+    "env": {
+      "OPENWEATHER_API_KEY": {
+        "description": "OpenWeatherMap API key for weather data (optional - uses mock data if not provided)",
+        "required": false
+      }
+    }
+  }

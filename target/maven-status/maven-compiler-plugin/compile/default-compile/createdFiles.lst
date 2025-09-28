@@ -1,0 +1,4 @@
+io/a2a/examples/weather/WeatherService.class
+io/a2a/examples/weather/AgentCardResource.class
+io/a2a/examples/weather/RootResource.class
+io/a2a/examples/weather/JsonRpcResource.class
